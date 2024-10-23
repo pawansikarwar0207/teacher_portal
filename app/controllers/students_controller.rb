@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: %i[show edit update destroy]
+  before_action :authenticate_teacher!
 
   def index
     @students = Student.all
@@ -10,19 +11,14 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
-	  respond_to do |format|
-	    format.turbo_stream # Respond to Turbo stream requests
-	    format.html         # Fallback for standard HTML requests
-	  end
 	end
-
-
+  
   def create
     @student = Student.new(student_params)
     if @student.save
       respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.append('students', partial: 'students/student', locals: { student: @student }) }
-        format.html { redirect_to students_path, notice: 'Student was successfully created.' }
+        format.turbo_stream 
+        format.html
       end
     else
       render :new, status: :unprocessable_entity

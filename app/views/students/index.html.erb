@@ -16,13 +16,14 @@
  			<h2>Student List</h2>
 		</div>
 		<div class="col-md-6 d-flex justify-content-end">
- 			<%= link_to 'Create Student', new_student_path(format: :turbo_stream), class: 'btn btn-primary mb-3', id: 'add-job-link', data: { controller: "bs-modal"} %>
+ 			<%#= link_to 'Create Student', new_student_path(format: :turbo_stream), class: 'btn btn-primary mb-3', id: 'add-job-link', data: { controller: "bs-modal-form", turbo: true} %>
+ 			<%= link_to "New Student", new_student_path, class: "btn btn-primary", data: { controller: "bs-modal-form" } %>
  			<%# <%= link_to "New Post", new_post_path(format: :turbo_stream), data: { turbo_frame: "_top" } %>
 		</div>
 	</div>
 
 
- <table class="table" data-controller= "bs-modal">
+ <table class="table">
  	<thead>
  		<tr>
  			<th>Name</th>

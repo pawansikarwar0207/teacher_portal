@@ -1,6 +1,5 @@
-
-<div class="modal-body">
-  <%= form_with(model: @student, url: students_path, method: :post, local: true) do |form| %>
+<%= form_with(model: @student) do |form| %>
+  <div class="modal-body">
   <%= form.hidden_field :teacher_id, value: current_teacher.id %>
   <div class="form-group">
     <%= form.label :name %>
@@ -15,7 +14,7 @@
     <%= form.number_field :marks, class: 'form-control mt-2 mb-2', min: 0 %>
   </div>
   <div>
-    <%= form.submit class: 'btn btn-primary mt-2' %>
+    <%= form.submit class: 'btn btn-primary mt-2', data: { action: 'click->bs-modal#submitEnd' } %>
+  </div>
   </div>
 <% end %>
-</div>
