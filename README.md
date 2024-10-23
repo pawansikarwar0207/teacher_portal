@@ -30,7 +30,7 @@ Ensure that you have the following installed on your machine:
 
 	bundle install
 
-4. **Add your credentials into the database.yml**:
+4. **Opne sublime or code and add your credentials into the database.yml**:
 
 5. **Create the database**:
 
@@ -51,3 +51,7 @@ Ensure that you have the following installed on your machine:
 9. **Open the app:**:
 
 	Visit http://localhost:3000 in your browser to access the application.
+
+11. **Login with this credential** :
+	email : teacher@example.com
+	password : 123456
