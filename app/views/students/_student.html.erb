@@ -1,0 +1,7 @@
+<div id="<%= dom_id(student) %>">
+  <p>Name: <%= student.name %></p>
+  <p>Age: <%= student.age %></p>
+  <p>Email: <%= student.email %></p>
+  <%= link_to 'Edit', edit_student_path(student), class: 'button' %> |
+  <%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' }, class: 'button' %>
+</div>
