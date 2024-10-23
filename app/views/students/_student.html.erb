@@ -2,11 +2,11 @@
   <td>
     <span class="avatar"><%= student.name[0].upcase %></span>
   </td>
-  <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="name" data-editable-url="<%= student_path(student) %>" contenteditable="true">
+  <td data-controller="editable" data-editable-field="name" data-editable-url="<%= student_path(student) %>" contenteditable="true">
     <%= student.name %>
     </td>
-  <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="subject_name" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.subject_name %></td>
-  <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="marks" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.marks %></td>
+  <td data-controller="editable" data-editable-field="subject_name" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.subject_name %></td>
+  <td data-controller="editable" data-editable-field="marks" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.marks %></td>
   <td>
     <div class="dropdown">
       <button class="btn btn-dark dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
