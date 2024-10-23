@@ -30,22 +30,24 @@ Ensure that you have the following installed on your machine:
 
 	bundle install
 
-4. **Create the database**:
+4. **Add your credentials into the database.yml**:
+
+5. **Create the database**:
 
 	rails db:create
 
-5. **Seed the database**:
+6. **Seed the database**:
 
 	rails db:seed
 
-6. **Precompile assets**:
+7. **Precompile assets**:
 	
 	rails assets:precompile
 
-7. **Start the Rails server**:
+8. **Start the Rails server**:
 
 	rails server
 
-8. **Open the app:**:
+9. **Open the app:**:
 
 	Visit http://localhost:3000 in your browser to access the application.
