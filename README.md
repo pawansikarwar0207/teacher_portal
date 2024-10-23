@@ -1,24 +1,51 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Project Name
 
-Things you may want to cover:
+Teacher Portal with ROR. The portal will include a login screen and a home screen for teachers, which will also serve as the student listing screen.
 
-* Ruby version
+## Getting Started
 
-* System dependencies
+Follow these steps to get the application up and running on your local machine.
 
-* Configuration
+### Prerequisites
 
-* Database creation
+Ensure that you have the following installed on your machine:
 
-* Database initialization
+- Ruby (version - "3.2.2")
+- Rails (version - "7.1.4" )
+- PostgreSQL (version - "1.1")
 
-* How to run the test suite
+### Installation
 
-* Services (job queues, cache servers, search engines, etc.)
+1. **Clone the repository**:
 
-* Deployment instructions
+   git clone (https://github.com/pawansikarwar0207/teacher_portal.git)
 
-* ...
+2. **Navigate into the project directory** :
+
+	cd (teacher_portal)
+
+3. **Install the required gems**:
+
+	bundle install
+
+4. **Create the database**:
+
+	rails db:create
+
+5. **Seed the database**:
+
+	rails db:seed
+
+6. **Precompile assets**:
+	
+	rails assets:precompile
+
+7. **Start the Rails server**:
+
+	rails server
+
+8. **Open the app:**:
+
+	Visit http://localhost:3000 in your browser to access the application.

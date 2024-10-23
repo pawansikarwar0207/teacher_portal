@@ -1,43 +1,47 @@
 <div class="container mt-5">
-	<h3>Students List</h3>
-	<div class="table-responsive">
-	 <table class="table">
-	 	<thead>
-	 		<tr>
-	 			<th></th>
-	 			<th>Name</th>
-	 			<th>Subject</th>
-	 			<th>Marks</th>
-	 			<th>Actions</th>
-	 		</tr>
-	 	</thead>
-	 	<tbody id="student-list">
-	 		<% @students.each do |student| %>
-		 		<tr id="student-<%= student.id %>">
-		 			<td>
-		 				<span class="avatar"><%= student.name[0].upcase %></span>
-		 			</td>
-		 			<td id="student-<%= student.id %>" data-controller="editable" data-editable-field="name" data-editable-url="<%= student_path(student) %>" contenteditable="true">
-		 				<%= student.name %>
-		 				</td>
-		      <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="subject_name" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.subject_name %></td>
-		      <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="marks" data-editable-url="<%= student_path(student) %>" contenteditable="true" class="student-marks-<%= student.id %>"><%= student.marks %></td>
-		 			<td>
-		 				<div class="dropdown">
-						  <button class="btn btn-dark dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-						  </button>
-						  <ul class="dropdown-menu rounded-0">
-						  	<%= link_to 'Edit', edit_student_path(student), class: "dropdown-item", data: { controller: "bs-modal-form" } %>
-		 						<%= link_to 'Delete', student_path(student), class: "dropdown-item",  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
-						  </ul>
-						</div>
-		 			</td>
+	<% if @students.present? %>
+		<h3>Students List</h3>
+		<div class="table-responsive">
+		 <table class="table">
+		 	<thead>
+		 		<tr>
+		 			<th></th>
+		 			<th>Name</th>
+		 			<th>Subject</th>
+		 			<th>Marks</th>
+		 			<th>Actions</th>
 		 		</tr>
-	 		<% end %>
-	 	</tbody>
-	 </table>
- </div>
- <div>
- 	<%= link_to "New Student", new_student_path, class: "btn btn-dark rounded-0 mt-3", data: { controller: "bs-modal-form" } %>
- </div>
+		 	</thead>
+		 	<tbody id="student-list">
+		 		<% @students.each do |student| %>
+			 		<tr id="student-<%= student.id %>">
+			 			<td>
+			 				<span class="avatar"><%= student.name[0].upcase %></span>
+			 			</td>
+			 			<td id="student-<%= student.id %>" data-controller="editable" data-editable-field="name" data-editable-url="<%= student_path(student) %>" contenteditable="true">
+			 				<%= student.name %>
+			 				</td>
+			      <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="subject_name" data-editable-url="<%= student_path(student) %>" contenteditable="true"><%= student.subject_name %></td>
+			      <td id="student-<%= student.id %>" data-controller="editable" data-editable-field="marks" data-editable-url="<%= student_path(student) %>" contenteditable="true" class="student-marks-<%= student.id %>"><%= student.marks %></td>
+			 			<td>
+			 				<div class="dropdown">
+							  <button class="btn btn-dark dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							  </button>
+							  <ul class="dropdown-menu rounded-0">
+							  	<%= link_to 'Edit', edit_student_path(student), class: "dropdown-item", data: { controller: "bs-modal-form" } %>
+			 						<%= link_to 'Delete', student_path(student), class: "dropdown-item",  data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+							  </ul>
+							</div>
+			 			</td>
+			 		</tr>
+		 		<% end %>
+		 	</tbody>
+		 </table>
+	 </div>
+	 <div>
+	 	<%= link_to "New Student", new_student_path, class: "btn btn-dark rounded-0 mt-3", data: { controller: "bs-modal-form" } %>
+	 </div>
+	<% else %>
+		<p class="border text-danger p-3 text-center fs-4">No Record Found</p>
+	<% end %>
 </div>

@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_teacher!
 
   def index
-    @students = Student.all.order(updated_at: :desc)
+    @students = current_teacher.students.all.order(updated_at: :desc)
   end
 
   def show

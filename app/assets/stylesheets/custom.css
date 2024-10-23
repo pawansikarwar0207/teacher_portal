@@ -15,3 +15,7 @@ body {
   line-height: 30px;
   font-weight: bold;
 }
+
+.field_with_errors {
+  width: 91%;
+}
