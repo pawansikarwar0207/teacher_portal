@@ -1,1 +1,6 @@
-<%= turbo_stream.append "student-list", partial: "students/student", locals: { student: @student } %>
+<%= turbo_stream.replace "flash-messages", partial: "shared/flash" %>
+<% if @existing_student.present? %>
+  <%= turbo_stream.replace "student-#{@existing_student.id}", partial: "students/student", locals: { student: @existing_student } %>
+<% else %>
+  <%= turbo_stream.append "student-list", partial: "students/student", locals: { student: @student } %>
+<% end %>

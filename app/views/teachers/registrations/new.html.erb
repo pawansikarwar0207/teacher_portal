@@ -1,29 +1,44 @@
-<h2>Sign up</h2>
+<div class="d-flex justify-content-center align-items-center mt-5">
+  <div class="container col-lg-4 mx-auto">
+    <div class="card shadow rounded-0">
+      <h2 class="card-title text-center mt-2">Sign up</h2>
+      <div class="card-body">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "teachers/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "teachers/shared/error_messages", resource: resource %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <div class="input-group mt-2 mb-2">
+              <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+              <%= f.text_field :email, autofocus: true, autocomplete: "email", class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <div class="input-group mt-2 mb-2">
+              <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+              <%= f.password_field :password, autocomplete: "new-password", class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <div class="input-group mt-2 mb-2">
+              <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-lock"></i></span>
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+            </div>
+          </div>
+
+          <div class="actions d-flex justify-content-center">
+            <%= f.submit "Sign up", class: 'btn btn-dark rounded-0 mt-5 w-50 mx-2' %>
+            <%= link_to "Log in", new_session_path(resource_name), class: 'btn btn-dark rounded-0 mt-5 w-50' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "teachers/shared/links" %>
+</div>

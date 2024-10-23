@@ -1,20 +1,46 @@
-<%= form_with(model: @student) do |form| %>
-  <div class="modal-body">
-  <%= form.hidden_field :teacher_id, value: current_teacher.id %>
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control mt-2 mb-2' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :subject_name %>
-    <%= form.text_field :subject_name, class: 'form-control mt-2 mb-2' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :marks %>
-    <%= form.number_field :marks, class: 'form-control mt-2 mb-2', min: 0 %>
-  </div>
-  <div>
-    <%= form.submit class: 'btn btn-primary mt-2', data: { action: 'click->bs-modal#submitEnd' } %>
-  </div>
-  </div>
-<% end %>
+<div class="container p-4">
+	<%= form_with(model: @student) do |form| %>
+	  <div class="modal-body">
+
+	  	<% if @student.errors.any? %>
+        <div class="alert alert-danger rounded-0">
+          <h4><%= pluralize(@student.errors.count, "error") %> prohibited this student from being saved:</h4>
+          <ul>
+            <% @student.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+		  <%= form.hidden_field :teacher_id, value: current_teacher.id %>
+		  <div class="form-group">
+			  <%= form.label :name %>
+			  <div class="input-group mt-2 mb-2">
+			    <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-user"></i></span>
+			    <%= form.text_field :name, class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <%= form.label :subject_name, 'Subject'%>
+			  <div class="input-group mt-2 mb-2">
+			    <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-book"></i></span>
+			    <%= form.text_field :subject_name, class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+			  </div>
+			</div>
+
+			<div class="form-group">
+			  <%= form.label :marks, 'Mark'%>
+			  <div class="input-group mt-2 mb-2">
+			    <span class="input-group-text rounded-0" id="basic-addon1"><i class="fa-solid fa-bookmark"></i></span>
+			    <%= form.text_field :marks, class: 'form-control rounded-0', 'aria-describedby': 'basic-addon1' %>
+			  </div>
+			</div>
+
+		  <div class="text-center">
+		    <%= form.submit class: 'btn btn-primary w-50 btn-dark rounded-0 py-2 mt-2', data: { action: 'click->bs-modal#submitEnd' } %>
+		  </div>
+	  </div>
+	<% end %>
+</div>

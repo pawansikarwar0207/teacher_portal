@@ -8,6 +8,9 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+
+teacher = Teacher.create( email: 'teacher@example.com', password: 123456 )
+
 teacher = Teacher.find(1)
 
 teacher.students.create(name: 'Aarav Sharma', subject_name: 'Mathematics', marks: 85)

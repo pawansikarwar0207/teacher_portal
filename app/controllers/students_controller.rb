@@ -3,7 +3,7 @@ class StudentsController < ApplicationController
   before_action :authenticate_teacher!
 
   def index
-    @students = Student.all
+    @students = Student.all.order(updated_at: :desc)
   end
 
   def show
@@ -14,16 +14,37 @@ class StudentsController < ApplicationController
 	end
   
   def create
-    @student = Student.new(student_params)
-    if @student.save
-      respond_to do |format|
-        format.turbo_stream 
-        format.html
-      end
-    else
-      render :new, status: :unprocessable_entity
-    end
-  end
+	  # Find existing student by name and subject_name
+	  @existing_student = Student.find_by(name: student_params[:name], subject_name: student_params[:subject_name])
+
+	  if @existing_student
+	    # If found, update the marks with new marks to the existing ones
+	    @existing_student.marks = student_params[:marks].to_i
+	    if @existing_student.save
+	      flash[:notice] = 'Marks were successfully updated for the existing student.'
+	      respond_to do |format|
+	        format.turbo_stream
+	        format.html { redirect_to students_path }
+	      end
+	    else
+	      flash[:alert] = 'Failed to update marks for the existing student.'
+	      render :new, status: :unprocessable_entity
+	    end
+	  else
+	    # If not found, create a new student
+	    @student = Student.new(student_params)
+	    if @student.save
+	      flash[:notice] = 'Student was successfully created.'
+	      respond_to do |format|
+	        format.turbo_stream
+	        format.html { redirect_to students_path }
+	      end
+	    else
+	      render :new, status: :unprocessable_entity
+	    end
+	  end
+	end
+
 
   def edit
     respond_to do |format|
@@ -33,22 +54,21 @@ class StudentsController < ApplicationController
   end
 
   def update
-    if @student.update(student_params)
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@student, partial: 'students/student', locals: { student: @student }) }
-        format.html { redirect_to students_path, notice: 'Student was successfully updated.' }
-      end
-    else
-      render :edit, status: :unprocessable_entity
-    end
-  end
+	  if @student.update(student_params)
+	  	flash[:notice] = 'Student was successfully updated.'
+	    respond_to do |format|
+	      format.json { head :no_content }
+	      format.turbo_stream 
+	    end
+	  else
+	    render json: { error: "Update failed" }, status: :unprocessable_entity
+	  end
+	end
+
 
   def destroy
     @student.destroy
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@student) }
-      format.html { redirect_to students_path, notice: 'Student was successfully destroyed.' }
-    end
+    redirect_to root_path, notice: "Student was successfully deleted."
   end
 
   private

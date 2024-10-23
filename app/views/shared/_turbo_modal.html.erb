@@ -1,7 +1,7 @@
 <%= turbo_frame_tag :remote_modal, target: :_top do %>
   <div class="modal fade" id="bsTurboModal" tabindex="-1" aria-labelledby="bsTurboModalLabel" aria-hidden="true" data-controller="bs-modal">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-0">
         <div class="modal-header">
           <h5 class="modal-title" id="bsTurboModalLabel"><%= modal_title %></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -11,3 +11,4 @@
     </div>
   </div>
 <% end %>
+
