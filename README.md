@@ -30,7 +30,7 @@ Ensure that you have the following installed on your machine:
 
 	bundle install
 
-4. **Opne sublime or code and add your credentials into the database.yml**:
+4. **Open sublime or code and add your credentials into the database.yml**:
 
 5. **Create the database**:
 
